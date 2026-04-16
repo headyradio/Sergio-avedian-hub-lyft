@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { TenantProvider } from "@/components/TenantProvider"
 import { HubNav } from "@/components/HubNav"
 import { HubFooter } from "@/components/HubFooter"
+import { getTenantConfigSync, getTenantSlug } from "@/config/tenants"
 import "@/styles/globals.css"
 import "@/styles/hub-tokens.css"
 
@@ -25,6 +26,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const tenant = getTenantConfigSync(getTenantSlug())
+  const { theme } = tenant
+
   return (
     <html lang="en">
       <body>
@@ -32,9 +36,21 @@ export default function RootLayout({
           className="hub-theme"
           style={{
             minHeight: "100vh",
-            backgroundColor: "var(--hub-bg)",
+            backgroundColor: theme.bg,
             isolation: "isolate",
-          }}
+            "--color-brand": tenant.brandColor,
+            "--color-brand-dark": tenant.brandColorDark,
+            "--hub-bg": theme.bg,
+            "--hub-surface": theme.surface,
+            "--hub-surface-2": theme.surface2,
+            "--hub-surface-hover": theme.surfaceHover,
+            "--hub-border": theme.border,
+            "--hub-text": theme.text,
+            "--hub-text-muted": theme.textMuted,
+            "--hub-text-faint": theme.textFaint,
+            "--card-radius": theme.cardRadius,
+            "--button-radius": theme.buttonRadius,
+          } as React.CSSProperties}
         >
           <TenantProvider>
             {/* Skip link — first focusable element, visible only when focused */}

@@ -5,6 +5,8 @@ export const tenantConfig: TenantConfig = {
   companyName: "Sergio Avedian",
   logoUrl: "/logos/sergio-avedian.svg",
   logoHeight: 32,
+  logoIntrinsicWidth: 480,
+  logoIntrinsicHeight: 128,
   brandColor: "#E50914",
   brandColorDark: "#B20710",
   accentText: "Financial Literacy Hub",

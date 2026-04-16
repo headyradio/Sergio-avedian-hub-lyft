@@ -17,6 +17,8 @@ export type TenantConfig = {
   companyName: string
   logoUrl: string
   logoHeight: number
+  logoIntrinsicWidth: number
+  logoIntrinsicHeight: number
   brandColor: string
   brandColorDark: string
   accentText: string
@@ -56,6 +58,8 @@ export function getTenantConfigSync(slug: string): TenantConfig {
       companyName: "Sergio Avedian",
       logoUrl: "/logos/sergio-avedian.svg",
       logoHeight: 32,
+      logoIntrinsicWidth: 480,
+      logoIntrinsicHeight: 128,
       brandColor: "#E50914",
       brandColorDark: "#B20710",
       accentText: "Financial Literacy Hub",
@@ -86,6 +90,8 @@ export function getTenantConfigSync(slug: string): TenantConfig {
       companyName: "Lyft",
       logoUrl: "/logos/Lyft_logo_2025.png",
       logoHeight: 28,
+      logoIntrinsicWidth: 1920,
+      logoIntrinsicHeight: 1297,
       brandColor: "#FF00BF",
       brandColorDark: "#CC009A",
       accentText: "Driver Financial Wellness",

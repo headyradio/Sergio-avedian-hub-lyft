@@ -5,6 +5,8 @@ export const tenantConfig: TenantConfig = {
   companyName: "Lyft",
   logoUrl: "/logos/Lyft_logo_2025.png",
   logoHeight: 28,
+  logoIntrinsicWidth: 1920,
+  logoIntrinsicHeight: 1297,
   brandColor: "#FF00BF",
   brandColorDark: "#CC009A",
   accentText: "Driver Financial Wellness",

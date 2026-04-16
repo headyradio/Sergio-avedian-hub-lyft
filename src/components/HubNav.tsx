@@ -50,10 +50,12 @@ export function HubNav() {
             <Image
               src={tenant.logoUrl}
               alt={`${tenant.companyName} logo`}
-              width={80}
+              width={Math.round(
+                tenant.logoHeight *
+                  (tenant.logoIntrinsicWidth / tenant.logoIntrinsicHeight)
+              )}
               height={tenant.logoHeight}
               className="object-contain"
-              style={{ height: tenant.logoHeight, width: "auto" }}
               priority
             />
           </span>
