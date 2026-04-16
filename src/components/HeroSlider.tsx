@@ -115,10 +115,15 @@ export function HeroSlider({ slides, intervalMs = 6000 }: HeroSliderProps) {
         className="relative w-full overflow-hidden"
         style={{
           height: isLight ? undefined : "clamp(420px, 56vh, 620px)",
-          aspectRatio: isLight ? undefined : undefined,
         }}
       >
-        <div className={isLight ? "relative aspect-[21/9] md:aspect-[3/1]" : "relative w-full h-full"}>
+        <div
+          className={
+            isLight
+              ? "relative w-full h-[clamp(480px,70vh,560px)] md:h-auto md:aspect-[3/1]"
+              : "relative w-full h-full"
+          }
+        >
           {slides.map((s, i) => (
             <div
               key={i}
@@ -142,13 +147,24 @@ export function HeroSlider({ slides, intervalMs = 6000 }: HeroSliderProps) {
 
           {/* Gradient overlays for text readability */}
           {isLight ? (
-            <div
-              className="absolute inset-0 z-[2]"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0.25) 100%)",
-              }}
-            />
+            <>
+              {/* Mobile: bottom-up gradient (text sits at bottom) */}
+              <div
+                className="absolute inset-0 z-[2] md:hidden"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.6) 38%, rgba(0,0,0,0.2) 72%, rgba(0,0,0,0) 100%)",
+                }}
+              />
+              {/* Desktop: left-right gradient (text sits left-center) */}
+              <div
+                className="absolute inset-0 z-[2] hidden md:block"
+                style={{
+                  background:
+                    "linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0.25) 100%)",
+                }}
+              />
+            </>
           ) : (
             <>
               <div
@@ -167,9 +183,9 @@ export function HeroSlider({ slides, intervalMs = 6000 }: HeroSliderProps) {
             </>
           )}
 
-          {/* Text content */}
+          {/* Text content — bottom-aligned on mobile, centered on desktop */}
           <div
-            className="absolute inset-0 z-[3] flex flex-col justify-center px-6 md:px-12 lg:px-16"
+            className="absolute inset-0 z-[3] flex flex-col justify-end md:justify-center px-5 pb-20 md:px-12 md:pb-0 lg:px-16"
             style={{ maxWidth: "680px" }}
           >
             <h2

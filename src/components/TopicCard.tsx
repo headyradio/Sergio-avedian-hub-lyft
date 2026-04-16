@@ -36,9 +36,9 @@ export function TopicCard({ topic }: TopicCardProps) {
         <div
           className="absolute inset-x-0 bottom-0"
           style={{
-            height: "62%",
+            height: "85%",
             background:
-              "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 55%, rgba(0,0,0,0.55) 85%, rgba(0,0,0,0) 100%)",
+              "linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.9) 35%, rgba(0,0,0,0.7) 65%, rgba(0,0,0,0.35) 88%, rgba(0,0,0,0) 100%)",
           }}
         />
 
