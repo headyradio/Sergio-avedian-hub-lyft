@@ -1,10 +1,8 @@
-/* Minimal base reset — the rest of the styling is handled by hub-tokens.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* Minimal base reset on top of Tailwind's preflight */
 
 html,
 body {
