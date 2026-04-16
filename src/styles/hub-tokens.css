@@ -1,0 +1,212 @@
+/* Financial Literacy Hub — Full style isolation from parent site */
+
+.hub-theme {
+  /* Fallback defaults — overridden at runtime by TenantProvider */
+  --hub-bg: #0F0F0F;
+  --hub-surface: #181818;
+  --hub-surface-2: #222222;
+  --hub-surface-hover: #2A2A2A;
+  --hub-border: rgba(255, 255, 255, 0.08);
+  --hub-text: #E5E5E5;
+  --hub-text-muted: #A3A3A3;
+  --hub-text-faint: #6B6B6B;
+  --color-brand: #E50914;
+  --color-brand-dark: #B20710;
+  --card-radius: 6px;
+  --button-radius: 6px;
+  --card-transition: 200ms cubic-bezier(0.45, 0, 0.15, 1);
+  --row-gap: 16px;
+  --card-width: clamp(180px, 20vw, 300px);
+}
+
+/* ── Full style isolation ── */
+/* Override ALL inherited styles from the parent Sergio Avedian site */
+.hub-theme,
+.hub-theme * {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.hub-theme {
+  background-color: var(--hub-bg);
+  color: var(--hub-text);
+  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hub-theme h1,
+.hub-theme h2,
+.hub-theme h3,
+.hub-theme h4,
+.hub-theme h5,
+.hub-theme h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--hub-text);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* ─── Accessibility ─── */
+
+/* Screen-reader-only utility (used by skip link) */
+.hub-theme .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip-to-content link — WCAG requirement for keyboard users */
+.hub-theme .hub-skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 12px 20px;
+  background-color: var(--color-brand);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--button-radius, 8px);
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  /* Hidden until focused */
+  transform: translateY(-120%);
+  opacity: 0;
+  transition: transform 180ms ease-out, opacity 180ms ease-out;
+}
+
+.hub-theme .hub-skip-link:focus,
+.hub-theme .hub-skip-link:focus-visible {
+  transform: translateY(0);
+  opacity: 1;
+  outline: 3px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* Unified focus-visible ring on every interactive element.
+   Only shows on keyboard navigation, never on mouse clicks. */
+.hub-theme a:focus-visible,
+.hub-theme button:focus-visible,
+.hub-theme [role="button"]:focus-visible,
+.hub-theme [role="tab"]:focus-visible,
+.hub-theme input:focus-visible,
+.hub-theme select:focus-visible,
+.hub-theme textarea:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Remove default outline when focus-visible is active (prevent double rings) */
+.hub-theme a:focus:not(:focus-visible),
+.hub-theme button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Brand lockup hover animation (nav home link) ─── */
+
+.hub-theme .hub-brand {
+  position: relative;
+  padding: 4px 6px;
+  margin: -4px -6px;
+  border-radius: 8px;
+  transition: background-color 300ms ease-out;
+}
+
+.hub-theme .hub-brand:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.hub-theme .hub-brand__accent {
+  position: relative;
+}
+
+.hub-theme .hub-brand__accent::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  background-color: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 2px;
+}
+
+.hub-theme .hub-brand:hover .hub-brand__accent::after,
+.hub-theme .hub-brand:focus-visible .hub-brand__accent::after {
+  transform: scaleX(1);
+}
+
+.hub-theme .hub-brand:hover .hub-brand__accent,
+.hub-theme .hub-brand:focus-visible .hub-brand__accent {
+  color: var(--color-brand) !important;
+}
+
+/* ─── Hover bump for icon buttons ─── */
+
+.hub-theme .hub-icon-btn {
+  transition: transform 200ms ease-out, background-color 200ms ease-out,
+    color 200ms ease-out;
+}
+
+.hub-theme .hub-icon-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Desktop nav link hover underline */
+.hub-theme .hub-nav-link::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: -2px;
+  height: 2px;
+  background-color: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0.6;
+  border-radius: 2px;
+}
+
+.hub-theme .hub-nav-link:hover::before {
+  transform: scaleX(1);
+}
+
+/* Scrollbar hide utility */
+.hub-theme .scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hub-theme .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Respect prefers-reduced-motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hub-theme *,
+  .hub-theme *::before,
+  .hub-theme *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable hover scale/lift animations */
+  .hub-theme .hub-brand__logo,
+  .hub-theme .hub-icon-btn {
+    transform: none !important;
+  }
+}
